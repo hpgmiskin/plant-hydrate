@@ -11,7 +11,7 @@ WORKDIR /usr/app
 COPY requirements.txt ./requirements.txt
 
 # pip install python deps from requirements.txt on the resin.io build server
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt --extra-index-url https://www.piwheels.org/simple/
 
 # This will copy all files in the src directory
 COPY ./src ./src
