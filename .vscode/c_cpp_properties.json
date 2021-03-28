@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "default",
+            "includePath": [
+                "${workspaceFolder}/firmware/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include",
+                "${workspaceFolder}/firmware/.platformio/packages/framework-arduinoteensy/cores/teensy3",
+                "${workspaceFolder}/firmware/.platformio/packages/framework-arduinoteensy/libraries",
+                "${workspaceFolder}/firmware/src"
+            ],
+            "defines": [
+                "ARDUINO",
+                "TEENSYDUINO",
+                "USB_SERIAL",
+                "__arm__",
+                "F_CPU=20000000"
+            ]
+        }
+    ],
+    "version": 4
+}

@@ -12,6 +12,6 @@ void setup()
 void loop()
 {
     const int water_sensor = analogRead(WATER_SENSOR_PIN);
-    print("water_sensor: ", water_sensor);
-    delay(1000);
+    print("water_sensor:", water_sensor);
+    delay(10 * 1000);
 }
