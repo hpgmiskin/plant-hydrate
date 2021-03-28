@@ -1,23 +1,12 @@
+import aioserial
 import asyncio
-import serial_asyncio
 
+async def read_and_print(aioserial_instance: aioserial.AioSerial):
+    while True:
+        raw_bytes = await aioserial_instance.read_async()
+        string_message = raw_bytes.decode(errors='ignore')
+        print(string_message, end='', flush=True)
 
-class Output(asyncio.Protocol):
-    def connection_made(self, transport):
-        self.transport = transport
-        print('port opened', transport)
-        transport.serial.rts = False
-        transport.write(b'hello world\n')
-
-    def data_received(self, data):
-        print('data received', repr(data))
-
-    def connection_lost(self, exc):
-        print('port closed')
-        asyncio.get_event_loop().stop()
-
-loop = asyncio.get_event_loop()
-coro = serial_asyncio.create_serial_connection(loop, Output, '/dev/cu.usbmodem63781901', baudrate=9600)
-loop.run_until_complete(coro)
-loop.run_forever()
-loop.close()
+port = '/dev/cu.usbmodem63781901'
+aioserial_instance = aioserial.AioSerial(port=port)
+asyncio.run(read_and_print(aioserial_instance))
